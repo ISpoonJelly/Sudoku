@@ -1,15 +1,25 @@
 import Cell from "./cell";
+import BoardSolver from "../solvers/board_solver";
 
-export default abstract class Board {
-  protected cells: Map<string, Cell>;
+export default class Board {
+  private _cells: Cell[];
+  private limit: number;
 
-  constructor(configuration: BoardConfiguration) {
-    this.cells = configuration.cells;
+  public get cells(): Cell[] {
+    return this._cells;
   }
 
-  public abstract solve(): Board;
+  constructor(configuration: BoardConfiguration) {
+    this._cells = configuration.cells;
+    this.limit = configuration.limit;
+  }
+
+  public solve(solver: BoardSolver<Board>): void {
+    solver.solve(this, this.limit);
+  }
 }
 
 export interface BoardConfiguration {
-  cells: Map<string, Cell>;
+  cells: Cell[];
+  limit: number;
 }

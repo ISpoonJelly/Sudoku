@@ -10,7 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "@types/core-js": "^2.5.0",
+    "@types/lodash": "^4.14.111",
     "@types/node": "^10.5.2",
+    "lodash": "^4.17.10",
     "ts-node": "^7.0.0",
     "typescript": "^2.9.2"
   },

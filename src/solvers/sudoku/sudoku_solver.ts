@@ -1,8 +1,6 @@
+import Board from "../../models/board";
 import BoardSolver from "../board_solver";
-import SudokuBoard from "../../models/sudoku_board";
 
-export default class SudokuSolver extends BoardSolver<SudokuBoard> {
-  public solve(): SudokuBoard {
-    throw Error("Not yet implemented!");
-  }
+export default abstract class SudokuSolver extends BoardSolver<Board> {
+  public abstract solve(board: Board, n: number): void;
 }

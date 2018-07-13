@@ -1,15 +1,21 @@
-import SudokuBoard, { SudokuConfiguration } from "./models/sudoku_board";
+import path from "path";
 import { readSudokuConfig } from "./util/board_reader";
+import BackTrackingSolver from "./solvers/sudoku/back_tracking_solver";
+import Board, { BoardConfiguration } from "./models/board";
+import { writeBoardSolution } from "./util/board_writer";
 
-async function main() {
-  const sudokuConfig: SudokuConfiguration = await readSudokuConfig(
-    __dirname,
-    "sample_files/1.cells",
-    "sample_files/1.regions"
+async function solveSudokuPuzzle(directory: string) {
+  const sudokuConfig: BoardConfiguration = await readSudokuConfig(
+    path.join(directory, "board.cells"),
+    path.join(directory, "board.regions")
   );
 
-  const sudokuBoard: SudokuBoard = new SudokuBoard(sudokuConfig);
-  console.log(sudokuBoard.solve());
+  const sudokuBoard: Board = new Board(sudokuConfig);
+  sudokuBoard.solve(new BackTrackingSolver());
+
+  const outputPath = path.join(directory, "board.solution");
+  await writeBoardSolution(outputPath, sudokuBoard);
+  console.log("solution written to:", outputPath);
 }
 
-main();
+solveSudokuPuzzle(path.join(__dirname, "sample_files", "1"));
