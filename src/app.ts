@@ -18,4 +18,4 @@ async function solveSudokuPuzzle(directory: string) {
   console.log("solution written to:", outputPath);
 }
 
-solveSudokuPuzzle(path.join(__dirname, "sample_files", "1"));
+solveSudokuPuzzle(path.join(__dirname, "..", "sample_files", "1"));
