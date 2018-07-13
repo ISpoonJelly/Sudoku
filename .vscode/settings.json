@@ -1,0 +1,12 @@
+{
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+
+  "files.trimTrailingWhitespace": true,
+
+  "tslint.autoFixOnSave": true,
+
+  "typescript.updateImportsOnFileMove.enabled": "prompt",
+  "typescript.preferences.quoteStyle": "single",
+  "typescript.reportStyleChecksAsWarnings": true
+}
