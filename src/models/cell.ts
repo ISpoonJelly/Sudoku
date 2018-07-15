@@ -28,6 +28,7 @@ export default class Cell {
       region.forEach(cell => {
         if (cell.value == n) {
           found = true;
+          return;
         }
       });
     });

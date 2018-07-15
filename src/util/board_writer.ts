@@ -19,22 +19,25 @@ export async function writeBoardSolution(
 }
 
 function formatBoard(board: Board): string {
-  let result = '|-----------------|\n|';
+  let result = '';
   board.cells.forEach((cell, index, arr) => {
     index = index + 1;
     result += cell.value;
-    if (index % 3 == 0) {
-      result += '|';
-    } else {
-      result += ',';
-    }
+
     if (index % 9 == 0) {
-      result += '\n|';
+      result += '\n';
+    } else {
+      if (index % 3 == 0) {
+        result += ' | ';
+      } else {
+        result += ' ';
+      }
     }
+
     if (index % 27 == 0) {
-      result += '-----------------|';
       if (index != arr.length) {
-        result += '\n|';
+        result += '------+-------+------';
+        result += '\n';
       }
     }
   });

@@ -1,0 +1,10 @@
+version: '2'
+services:
+  sudoku:
+    build: .
+    image: sudoku
+    working_dir: /usr/sudoku/
+    command: npm start /usr/sample_files/${BOARD_DIR}
+    volumes:
+      - ./sample_files:/usr/sample_files
+      - ./src:/usr/sudoku/src
