@@ -1,6 +1,5 @@
-import Board from "../../models/board";
-import BoardSolver from "../board_solver";
+import Cell from '../../models/cell';
 
-export default abstract class SudokuSolver extends BoardSolver<Board> {
-  public abstract solve(board: Board, n: number): void;
+export default abstract class SudokuSolver {
+  public abstract solve(cells: Cell[], alphabetMax: number): void;
 }

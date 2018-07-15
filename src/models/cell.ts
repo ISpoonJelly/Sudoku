@@ -3,15 +3,19 @@ export default class Cell {
   private readonly _fixed: boolean;
   private readonly _regions: Cell[][] = [];
 
-  constructor(config: { fixed: boolean; value?: number }) {
-    this._fixed = config.fixed;
-    if (config.value) {
-      this.value = config.value;
+  constructor(configuration: { fixed: boolean; value?: number }) {
+    if (configuration.fixed && !configuration.value) {
+      throw Error('Cell cannot be fixed without a value');
+    }
+
+    this._fixed = configuration.fixed;
+    if (configuration.value) {
+      this.value = configuration.value;
     }
   }
 
   public regionExist(region: Cell[]) {
-    return this._regions.indexOf(region) == -1;
+    return this._regions.indexOf(region) != -1;
   }
 
   public addRegion(region: Cell[]) {

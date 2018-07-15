@@ -6,7 +6,10 @@
 
   "tslint.autoFixOnSave": true,
 
-  "typescript.updateImportsOnFileMove.enabled": "prompt",
+  "prettier.singleQuote": true,
+
+  "javascript.preferences.quoteStyle": "single",
   "typescript.preferences.quoteStyle": "single",
+  "typescript.updateImportsOnFileMove.enabled": "prompt",
   "typescript.reportStyleChecksAsWarnings": true
 }

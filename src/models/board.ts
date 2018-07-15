@@ -1,5 +1,5 @@
-import Cell from "./cell";
-import BoardSolver from "../solvers/board_solver";
+import SudokuSolver from '../solvers/sudoku/sudoku_solver';
+import Cell from './cell';
 
 export default class Board {
   private _cells: Cell[];
@@ -10,12 +10,16 @@ export default class Board {
   }
 
   constructor(configuration: BoardConfiguration) {
+    if (configuration.limit < 1) {
+      throw Error('limit must be an integer greater than 0!');
+    }
+
     this._cells = configuration.cells;
     this.limit = configuration.limit;
   }
 
-  public solve(solver: BoardSolver<Board>): void {
-    solver.solve(this, this.limit);
+  public solve(solver: SudokuSolver): void {
+    solver.solve(this.cells, this.limit);
   }
 }
 

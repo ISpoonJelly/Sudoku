@@ -1,31 +1,31 @@
-import SudokuSolver from "./sudoku_solver";
-import Cell from "../../models/cell";
-import Board from "../../models/board";
+import Cell from '../../models/cell';
+import SudokuSolver from './sudoku_solver';
 
 export default class BackTrackingSolver extends SudokuSolver {
-  public solve(board: Board, n: number): void {
-    const emptyCells = board.cells.filter(cell => !cell.isFixed);
-    recursionSolving(emptyCells, n);
+  public solve(cells: Cell[], alphabetMax: number): void {
+    const emptyCells = cells.filter(cell => !cell.isFixed);
+    populateEmptyCells(emptyCells, alphabetMax);
   }
 }
 
-function recursionSolving(cells: Cell[], n: number): void {
+function populateEmptyCells(cells: Cell[], alphabetMax: number): void {
   let i = 0;
   while (i < cells.length) {
-    const current = cells[i];
-    let testValue = current.value + 1;
-    let found = false;
-    while (!found && testValue <= n) {
+    const current: Cell = cells[i];
+    let testValue: number = current.value + 1;
+    let isCorrect = false;
+    while (!isCorrect && testValue <= alphabetMax) {
       if (!current.hasViolations(testValue)) {
-        found = true;
+        isCorrect = true;
         current.value = testValue;
         ++i;
-      } else {
-        ++testValue;
+        break;
       }
+
+      ++testValue;
     }
 
-    if (!found) {
+    if (!isCorrect) {
       current.value = 0;
       --i;
     }
