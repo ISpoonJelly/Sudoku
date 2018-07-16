@@ -18,8 +18,8 @@ export default class Board {
     this.limit = configuration.limit;
   }
 
-  public solve(solver: SudokuSolver): void {
-    solver.solve(this.cells, this.limit);
+  public solve(solver: SudokuSolver): boolean {
+    return solver.solve(this.cells, this.limit);
   }
 }
 

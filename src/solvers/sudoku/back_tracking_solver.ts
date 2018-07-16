@@ -2,9 +2,14 @@ import Cell from '../../models/cell';
 import SudokuSolver from './sudoku_solver';
 
 export default class BackTrackingSolver extends SudokuSolver {
-  public solve(cells: Cell[], alphabetMax: number): void {
+  public solve(cells: Cell[], alphabetMax: number): boolean {
     const emptyCells = cells.filter(cell => !cell.isFixed);
-    populateEmptyCells(emptyCells, alphabetMax);
+    try {
+      populateEmptyCells(emptyCells, alphabetMax);
+    } catch (e) {
+      return false;
+    }
+    return true;
   }
 }
 

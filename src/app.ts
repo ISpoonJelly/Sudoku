@@ -12,11 +12,15 @@ async function solveSudokuPuzzle(directory: string) {
   );
 
   const sudokuBoard: Board = new Board(sudokuConfig);
-  sudokuBoard.solve(new BackTrackingSolver());
+  const solved = sudokuBoard.solve(new BackTrackingSolver());
 
-  const outputPath = path.join(directory, 'board.solution');
-  await writeBoardSolution(outputPath, sudokuBoard);
-  console.log('solution written to:', outputPath);
+  if (solved) {
+    const outputPath = path.join(directory, 'board.solution');
+    await writeBoardSolution(outputPath, sudokuBoard);
+    console.log('Solution written to:', outputPath);
+  } else {
+    console.log('Puzzle has no solution!');
+  }
 }
 
 const args = process.argv;
